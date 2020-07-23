@@ -7,8 +7,10 @@ let seconds = 0;
 let minutes = 0;
 
 // VALUE DTERMINING THE LIMIT OF THE TIMER
-let maxTimeInSeconds = 300;
+let maxTimeInSeconds = 140;
 
+minutes = Math.floor(maxTimeInSeconds / 60);
+seconds = maxTimeInSeconds;
 // Selector of various UI elements
 let seconds_field = document.getElementById("seconds");
 let minutes_field = document.getElementById("minutes");
@@ -18,7 +20,17 @@ let button = document.getElementById("button");
 let timer = null; // Used as a wrapper for the setInterval function which drives the main timer
 let blink = null; // Used as a wrapper for the setInterval function which drives the blinking of the timer
 let show = true; // Flag used for blinking of timer after maximum time is reached
+let start = true; // Flag triggered only during the start
 
+
+//For initial UI values
+if ((seconds % 60 < 10 && seconds % 60 != 0) || seconds / 60 == 0.0) {
+  seconds_field.innerText = "0" + (seconds % 60);
+}
+if (seconds % 60 >= 10 && seconds % 60 != 0 && seconds % 60 <= 59) {
+  seconds_field.innerText = seconds % 60;
+}
+minutes_field.innerText = "0" + minutes;
 
 //This function drives the timer, and the state of the button and is triggered every the button on screen is clicked
 let buttonClick = () => {
@@ -26,8 +38,14 @@ let buttonClick = () => {
     //Starts timer
     started = true;
     timer = setInterval(() => {
-      seconds++;
-      if (seconds == maxTimeInSeconds) {
+      seconds--;
+      if (start) {
+        // Executed only once in the entire timer life cycle
+        minutes = Math.floor(seconds / 60);
+        minutes_field.innerText = "0" + minutes;
+        start = false;
+      }
+      if (seconds == 0) {
         //This section is executed when the time limit is reached , changing the button state to 'Reset'
         expired = true;
         timer_field.style.color = "#9b000d";
@@ -50,7 +68,7 @@ let buttonClick = () => {
       } else if (seconds % 60 >= 10 && seconds % 60 != 0 && seconds % 60 <= 59) {
         seconds_field.innerText = seconds % 60;
       } else {
-        minutes++;
+        minutes--;
         seconds_field.innerText = "0" + (seconds % 60);
         minutes_field.innerText = "0" + minutes;
       }
@@ -59,9 +77,10 @@ let buttonClick = () => {
   } else {
     if (expired) {
       //Executed after the button state is changed to 'Reset' and the button is clicked to reset the timer
-      minutes = seconds = 0;
+      minutes = Math.floor(maxTimeInSeconds / 60);
+      seconds = maxTimeInSeconds;
       expired = false;
-      minutes_field.innerText = seconds_field.innerText = "00";
+      start = true;
       timer_field.style.color = "#f0e0ff";
       clearInterval(blink);
     } else {

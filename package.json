@@ -21,5 +21,8 @@
     "jest": "^26.1.0",
     "live-server": "^1.2.1",
     "puppeteer": "^5.2.1"
+  },
+  "jest": {
+    "testTimeout": 3600000
   }
 }

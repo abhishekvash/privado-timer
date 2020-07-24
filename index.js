@@ -7,7 +7,7 @@ let seconds = 0;
 let minutes = 0;
 
 // VALUE DTERMINING THE LIMIT OF THE TIMER
-let maxTimeInSeconds = 300;
+let maxTimeInSeconds = 10;
 
 minutes = Math.floor(maxTimeInSeconds / 60);
 seconds = maxTimeInSeconds;
@@ -21,7 +21,6 @@ let timer = null; // Used as a wrapper for the setInterval function which drives
 let blink = null; // Used as a wrapper for the setInterval function which drives the blinking of the timer
 let show = true; // Flag used for blinking of timer after maximum time is reached
 let start = true; // Flag triggered only during the start
-
 
 //For initial UI values
 if ((seconds % 60 < 10 && seconds % 60 != 0) || seconds / 60 == 0.0) {
@@ -82,6 +81,13 @@ let buttonClick = () => {
       expired = false;
       start = true;
       timer_field.style.color = "#f0e0ff";
+      if ((seconds % 60 < 10 && seconds % 60 != 0) || seconds / 60 == 0.0) {
+        seconds_field.innerText = "0" + (seconds % 60);
+      }
+      if (seconds % 60 >= 10 && seconds % 60 != 0 && seconds % 60 <= 59) {
+        seconds_field.innerText = seconds % 60;
+      }
+      minutes_field.innerText = "0" + minutes;
       clearInterval(blink);
     } else {
       //Executed when the timer is ticking the timer has to be 'Paused'

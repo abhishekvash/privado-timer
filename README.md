@@ -15,3 +15,5 @@ to view the application in the default browser.
 To run tests, type
 
     npm run test
+
+**Note: The application server should be running before testing is started**

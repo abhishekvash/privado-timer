@@ -63,7 +63,7 @@ test("TimerUI behaves approriately on timeout, leading to reset", async () => {
   expect(timerText).toBe("00:10");
   await page.click("body #button");
   //Change the value of the parameter for sleep appropriate to maxTimout
-  await sleep(10000);
+  await sleep(300000);
   let buttonText = await page.$eval("body #button", (e) => e.innerText);
   expect(buttonText).toBe("Reset");
   timerText = await page.$eval("body #timer", (e) => e.innerText);
@@ -74,7 +74,7 @@ test("TimerUI behaves approriately on timeout, leading to reset", async () => {
   timerText = await page.$eval("body #timer", (e) => e.innerText);
   buttonText = await page.$eval("body #button", (e) => e.innerText);
   timerColor = await page.$eval("body #timer", (e) => e.style.color);
-  expect(timerText).toBe("00:10");
+  expect(timerText).toBe("05:00");
   expect(buttonText).toBe("Start");
   expect(timerColor).toBe("rgb(240, 224, 255)");
   await browser.close();

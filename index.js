@@ -7,7 +7,7 @@ let seconds = 0;
 let minutes = 0;
 
 // VALUE DTERMINING THE LIMIT OF THE TIMER
-let maxTimeInSeconds = 10;
+let maxTimeInSeconds = 300;
 
 minutes = Math.floor(maxTimeInSeconds / 60);
 seconds = maxTimeInSeconds;

@@ -10,4 +10,8 @@ After the dependancies are installed , type
 
     npm run serve
 
-to view the application in the default broswer
+to view the application in the default browser.
+
+To run tests, type
+
+    npm run test

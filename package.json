@@ -1,0 +1,25 @@
+{
+  "name": "privado-timer",
+  "version": "1.0.0",
+  "description": "A simple timer application for the web",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "serve": "node serve.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abhishekvash/privado-timer.git"
+  },
+  "author": "Abhishek S",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abhishekvash/privado-timer/issues"
+  },
+  "homepage": "https://github.com/abhishekvash/privado-timer#readme",
+  "devDependencies": {
+    "jest": "^26.1.0",
+    "live-server": "^1.2.1",
+    "puppeteer": "^5.2.1"
+  }
+}
